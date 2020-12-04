@@ -425,8 +425,8 @@ function toStringList(arr) {
  *    ]
  */
 function sortCitiesArray(arr) {
-  // eslint-disable-next-line max-len
-  return arr.sort((a, b) => (b.country < a.country) - (a.country < b.country) || (b.city < a.city) - (a.city < b.city));
+  return arr.sort((a, b) => (b.country < a.country) - (a.country < b.country)
+   || (b.city < a.city) - (a.city < b.city));
 }
 
 /**
@@ -479,8 +479,8 @@ function getIntervalArray(start, end) {
  *   [ 'a', 'a', 'a', 'a' ]  => [ 'a' ]
  *   [ 1, 1, 2, 2, 3, 3, 4, 4] => [ 1, 2, 3, 4]
  */
-function distinct(/* arr */) {
-  throw new Error('Not implemented');
+function distinct(arr) {
+  return arr.filter((el, i, array) => array.indexOf(el) === i);
 }
 
 /**
@@ -513,8 +513,14 @@ function distinct(/* arr */) {
  *    "Poland" => ["Lodz"]
  *   }
  */
-function group(/* array, keySelector, valueSelector */) {
-  throw new Error('Not implemented');
+function group(array, keySelector, valueSelector) {
+  return array.reduce((map, item) => {
+    if (!map.has(keySelector(item))) {
+      return map.set(keySelector(item), [valueSelector(item)]);
+    }
+    map.get(keySelector(item)).push(valueSelector(item));
+    return map;
+  }, new Map());
 }
 
 
@@ -531,8 +537,8 @@ function group(/* array, keySelector, valueSelector */) {
  *   [[1, 2], [3, 4], [5, 6]], (x) => x     =>   [ 1, 2, 3, 4, 5, 6 ]
  *   ['one','two','three'], x=>x.split('')  =>   ['o','n','e','t','w','o','t','h','r','e','e']
  */
-function selectMany(/* arr, childrenSelector */) {
-  throw new Error('Not implemented');
+function selectMany(arr, childrenSelector) {
+  return arr.flatMap((el) => childrenSelector(el));
 }
 
 
@@ -548,8 +554,8 @@ function selectMany(/* arr, childrenSelector */) {
  *   ['one','two','three'], [2]       => 'three'  (arr[2])
  *   [[[ 1, 2, 3]]], [ 0, 0, 1 ]      => 2        (arr[0][0][1])
  */
-function getElementByIndexes(/* arr, indexes */) {
-  throw new Error('Not implemented');
+function getElementByIndexes(arr, indexes) {
+  return indexes.reduce((n, el) => (n ? n[el] : arr[el]), 0);
 }
 
 
