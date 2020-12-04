@@ -116,7 +116,7 @@ function angleBetweenClockHands(date) {
     hour = 0;
   }
   const deg = Math.abs((hour * 30 + minute * 0.5) - minute * 6);
-  return Math.min(((Math.PI * deg) / 180), (Math.PI * (360 - deg)) / 180);
+  return Math.min(((Math.PI * deg) / 180), ((Math.PI * (360 - deg)) / 180));
 }
 
 
