@@ -66,6 +66,7 @@ describe('05-regex-tasks', () => {
       'pa55word',
       'PASSW0RD',
       'Pa55',
+      'Pa__W0rd',
       '   PassW0rd    ',
     ].forEach((str) => {
       assert(
@@ -80,7 +81,6 @@ describe('05-regex-tasks', () => {
       'pa55W0rd',
       'pa55wordPASSW0RD',
       'a1A2b3B4',
-      'Pa__W0rd',
     ].forEach((str) => {
       assert(
         result.test(str),
