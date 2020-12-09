@@ -382,8 +382,15 @@ function isBracketsBalanced(str) {
  *    365, 4  => '11231'
  *    365, 10 => '365'
  */
-function toNaryString(/* num, n */) {
-  throw new Error('Not implemented');
+function toNaryString(num, n) {
+  const arr = [];
+  let number = num;
+  if (n === 10) return num;
+  for (let i = 0; number > 0; i += 1) {
+    arr.push(number % n);
+    number = Math.trunc(number / n);
+  }
+  return +(arr.reverse().join(''));
 }
 
 
@@ -399,8 +406,33 @@ function toNaryString(/* num, n */) {
  *   ['/web/assets/style.css', '/.bin/mocha',  '/read.me'] => '/'
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
-function getCommonDirectoryPath(/* pathes */) {
-  throw new Error('Not implemented');
+function getCommonDirectoryPath(pathes) {
+  const arr = [];
+  let secArr = [];
+  let str = '';
+  for (let i = 0; i < pathes.length; i += 1) {
+    arr.push(pathes[i].split('/'));
+  }
+  for (let j = 0; j < arr.length - 1; j += 1) {
+    for (let i = 0; i < arr[j].length; i += 1) {
+      if (arr[j][i] === arr[j + 1][i]) {
+        if (!(secArr.includes(arr[j][i]))) {
+          secArr.push(arr[j][i]);
+        }
+      } else {
+        secArr.splice(i, 1);
+        if (i === 0) secArr = [];
+      }
+    }
+  }
+  if (secArr.length === 0) return '';
+  for (let i = 0; i < secArr.length; i += 1) {
+    if (secArr[i] !== '') {
+      str += `${secArr[i]}/`;
+    }
+    if (secArr[i] === '') str += '/';
+  }
+  return str;
 }
 
 
@@ -422,8 +454,23 @@ function getCommonDirectoryPath(/* pathes */) {
  *                         [ 6 ]]
  *
  */
-function getMatrixProduct(/* m1, m2 */) {
-  throw new Error('Not implemented');
+function getMatrixProduct(m1, m2) {
+  const rows = m1.length;
+  const cols = m2[0].length;
+  const rows2 = m2.length;
+  const mul = [];
+  for (let i = 0; i < rows; i += 1) {
+    const row = [];
+    for (let j = 0; j < cols; j += 1) {
+      let num = 0;
+      for (let k = 0; k < rows2; k += 1) {
+        num += m1[i][k] * m2[k][j];
+      }
+      row.push(num);
+    }
+    mul.push(row);
+  }
+  return mul;
 }
 
 
