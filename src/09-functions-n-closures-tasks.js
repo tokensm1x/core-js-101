@@ -119,12 +119,12 @@ function retry(func, attempts) {
       try {
         result = func();
       } catch (e) {
-        const res = '1';
-        console.log(res);
+        result = e;
       }
       i += 1;
     }
-    return result;
+    if (result) return result;
+    throw new Error();
   };
 }
 
