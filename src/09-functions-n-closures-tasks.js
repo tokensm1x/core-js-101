@@ -119,7 +119,8 @@ function retry(func, attempts) {
       try {
         result = func();
       } catch (e) {
-        console.log(e);
+        const res = '1';
+        console.log(res);
       }
       i += 1;
     }
